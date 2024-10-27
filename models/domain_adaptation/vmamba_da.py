@@ -48,11 +48,11 @@ class Predictor(nn.Module):
             nn.Linear(self.feature_size, self.feature_size),
             nn.BatchNorm1d(self.feature_size),
             nn.ReLU(True),
-            nn.Dropout(0.5),
+            nn.Dropout(dropout_prob),
             nn.Linear(self.feature_size, self.feature_size // 2),
             nn.BatchNorm1d(self.feature_size // 2),
             nn.ReLU(True),
-            nn.Dropout(0.5),
+            nn.Dropout(dropout_prob),
             nn.Linear(self.feature_size // 2, num_classes)
         )
 

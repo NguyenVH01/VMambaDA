@@ -45,7 +45,6 @@ VMambaDA/
 ├── models/                # Model architectures (VMamba, MCD, SWD)
 ├── pretrain/              # Pretrained model weights
 ├── utils/                 # Utility scripts for data preprocessing and evaluation
-├── vscode-root/           # VSCode workspace files
 ├── config.py              # Main configuration file
 ├── main.py                # Entry point for running the model
 ├── README.md              # Project documentation
@@ -120,7 +119,7 @@ Place your datasets into the `dataset/source` and `dataset/target` directories, 
 To train the model, use the following command:
 
 ```bash
-python main.py --config configs/train_config.yaml
+python -m torch.distributed.launch --nnodes=1 --node_rank=0 --nproc_per_node=8 --master_addr="127.0.0.1" --master_port=29501 main.py --cfg </path/to/config> --batch-size </batch size> --data-path </path/of/dataset> --output </output_dir>
 ```
 
 ### Configuration
@@ -137,10 +136,9 @@ The model's training logs, checkpoints, and final evaluation metrics will be sav
 
 ### Example Results
 
-- **Accuracy**: 92.5%
-- **F1-Score**: 0.88
-- **Precision**: 0.90
-- **Recall**: 0.87
+- **Accuracy**: 88.29%
+- **F1-Score**: 88.1%
+- **Recall**: 88.29%
 
 ## License
 
@@ -152,13 +150,14 @@ If you use this project in your research, please cite it as follows:
 
 ```
 @article{VMambaDA,
-  title={VMambaDA: Visual State Space Model with Unsupervised Domain Adaptation in Cervical Cancer Detection},
-  author={Nguyen Vu and Truc Nguyen et al.},
-  journal={},
-  year={2024}
+  author    = {Nguyen Vu and Truc Nguyen and others},
+  title     = {{VMambaDA: Visual State Space Model with Unsupervised Domain Adaptation in Cervical Cancer Detection}},
+  journal   = {To be published},
+  year      = {2024},
+  publisher = {IEEE}
 }
 ```
 
 ## Contact
 
-For questions or collaboration, please contact [nguyenvuhoangwork@gmail.com](mailto:nguyenvuhoangwork@gmail.com).
+For questions or collaboration, please contact Nguyen Vu at [nguyenvuhoangwork@gmail.com](mailto:nguyenvuhoangwork@gmail.com) or Truc Nguyen at [nguyenthingoctruc102@gmail.com](mailto:nguyenthingoctruc102@gmail.com).
